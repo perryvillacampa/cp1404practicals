@@ -12,5 +12,4 @@
 # The smallest possible number is 2.5 and the largest possible number is 5.5.
 
 import random
-
 print(random.randint(1,100))
