@@ -4,7 +4,7 @@ Estimate: 30 minutes
 Actual:   45 minutes
 Word Counter Program
 
-CP1404/CP5632 Practical
+CP1404 Practical
 """
 
 
