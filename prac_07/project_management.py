@@ -1,6 +1,6 @@
 """CP1404 Practical - Project Management Program
 Estimated Time: 180 minutes
-Actual time:
+Actual time: 120 minutes
 """
 
 import datetime
@@ -93,6 +93,57 @@ def display_projects(projects):
     completed_projects.sort()
     for project in completed_projects:
         print(f"  {project}")
+
+
+def filter_projects_by_date(projects):
+    """Ask user for a date and display projects starting after that date, sorted by date."""
+    date_string = input("Show projects that start after date (dd/mm/yy): ")
+    try:
+        filter_date = datetime.datetime.strptime(date_string, DATE_FORMAT).date()
+    except ValueError:
+        print("Invalid date format. Please use dd/mm/yy.")
+        return
+    filtered_projects = [p for p in projects if p.start_date >= filter_date]
+    filtered_projects.sort(key=lambda p: p.start_date)
+    for project in filtered_projects:
+        print(project)
+
+
+def add_new_project(projects):
+    """Ask the user for new project details and add it to the list."""
+    print("Let's add a new project")
+    name = input("Name: ")
+    date_string = input("Start date (dd/mm/yy): ")
+    priority = int(input("Priority: "))
+    cost_estimate = float(input("Cost estimate: $"))
+    completion_percentage = int(input("Percent complete: "))
+    start_date = datetime.datetime.strptime(date_string, DATE_FORMAT).date()
+    new_project = Project(name, start_date, priority, cost_estimate, completion_percentage)
+    projects.append(new_project)
+
+
+def update_project(projects):
+    """Choose a project, then modify its completion % and/or priority."""
+    if not projects:
+        print("No projects to update.")
+        return
+    for i, project in enumerate(projects):
+        print(f"{i} {project}")
+    try:
+        choice_index = int(input("Project choice: "))
+        if 0 <= choice_index < len(projects):
+            project_to_update = projects[choice_index]
+            print(project_to_update)
+            new_percentage_input = input("New Percentage: ")
+            if new_percentage_input != "":
+                project_to_update.completion_percentage = int(new_percentage_input)
+            new_priority_input = input("New Priority: ")
+            if new_priority_input != "":
+                project_to_update.priority = int(new_priority_input)
+        else:
+            print("Invalid project choice.")
+    except ValueError:
+        print("Invalid input for choice, percentage, or priority.")\
 
 
 if __name__ == "__main__":
