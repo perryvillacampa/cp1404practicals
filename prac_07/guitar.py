@@ -1,9 +1,6 @@
-CURRENT_YEAR = 2024
-
-
 class Guitar:
     """Represent a Guitar object."""
-
+    CURRENT_YEAR = 2024
     def __init__(self, name="", year=0, cost=0):
         """
         Initialise a Guitar instance.
