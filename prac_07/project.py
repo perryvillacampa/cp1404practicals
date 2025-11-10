@@ -24,7 +24,7 @@ class Project:
         """Less than for Project objects, based on priority"""
         return self.priority < other.priority
 
-    def is_compete(self):
+    def is_complete(self):
         """Utility method: Return True if the project is 1000% complete."""
         return self.completion_percentage == 100
 
