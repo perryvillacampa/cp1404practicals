@@ -6,6 +6,14 @@ from guitar import Guitar
 
 FILENAME = "guitars.csv"
 
+def main():
+    """Program to read, display, sort, add and save a list of Guitar objects."""
+    guitars = load_guitars()
+    guitars.sort()
+    display_guitars(guitars)
+    get_new_guitars(guitars)
+    save_guitars(guitars)
+
 
 def load_guitars():
     """Reads guitars from the CSV file and returns a list of Guitar objects."""
@@ -29,3 +37,7 @@ def load_guitars():
     except FileNotFoundError:
         print(f"{FILENAME} not found. Starting with an empty list.")
         return []
+
+
+if __name__ == "__main__":
+    main()
