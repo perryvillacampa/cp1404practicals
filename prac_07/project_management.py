@@ -81,5 +81,19 @@ def save_projects(filename, projects):
         print(f"Error saving file: {e}")
 
 
+def display_projects(projects):
+    """Display incomplete and completed projects, both sorted by priority."""
+    print("\nIncomplete projects: ")
+    incomplete_projects = [p for p in projects if not p.is_complete()]
+    incomplete_projects.sort()
+    for project in incomplete_projects:
+        print(f"  {project}")
+    print("Completed projects: ")
+    completed_projects = [p for p in projects if p.is_complete()]
+    completed_projects.sort()
+    for project in completed_projects:
+        print(f"  {project}")
+
+
 if __name__ == "__main__":
     main()
