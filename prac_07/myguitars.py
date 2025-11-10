@@ -51,5 +51,24 @@ def display_guitars(guitars):
         print(f"Guitar{i}: {guitar.name:<25} ({guitar.year}), worth ${guitar.cost:10,.2f} {vintage_status}")
 
 
+def get_new_guitars(guitars):
+    """Prompts the user for new guitars and adds them to the list."""
+    print("\n... Add New Guitars ...")
+    name = input("Enter new guitar name (or blank to stop): ")
+    while name != "":
+        try:
+            year = int(input("Year: "))
+            while year < 1000 or year > Guitar.CURRENT_YEAR:
+                print(f"Please enter a valid year (e.g., between 1000 and {Guitar.CURRENT_YEAR})")
+                year = int(input("Year: "))
+            cost = float(input("Cost: $"))
+            new_guitar = Guitar(name, year, cost)
+            guitars.append(new_guitar)
+            print(f"{new_guitar.name} ({new_guitar.year}) added.")
+        except ValueError:
+            print("Invalid input for year or cost. Please use numbers.")
+        name = input("Enter new guitar name (or blank to stop): ")
+
+
 if __name__ == "__main__":
     main()
