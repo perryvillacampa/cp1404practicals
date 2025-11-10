@@ -4,7 +4,6 @@ Actual time:
 """
 
 import datetime
-
 from project import Project
 
 FILENAME = "projects.txt"
@@ -66,6 +65,20 @@ def load_projects(filename):
     except IndexError:
         print("Error: File is incorrectly formatted (missing fields).")
         return []
+
+
+def save_projects(filename, projects):
+    """Saves projects to a file."""
+    try:
+        with open(filename, 'w', encoding="utf-8") as out_file:
+            out_file.write("Name\tStart Date\tPriority\tCost Estimate\tCompletion Percentage\n")
+            for project in projects:
+                out_file.write(f"{project.name}\t{project.start_date.strftime(DATE_FORMAT)}\t"
+                               f"{project.priority}\t{project.cost_estimate}\t"
+                               f"{project.completion_percentage}\n")
+        print(f"Saved {len(projects)} projects to {filename}")
+    except Exception as e:
+        print(f"Error saving file: {e}")
 
 
 if __name__ == "__main__":
