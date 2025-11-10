@@ -39,5 +39,17 @@ def load_guitars():
         return []
 
 
+def display_guitars(guitars):
+    """ Display the list of Guitar objects with formatting."""
+    print("Displaying Guitars")
+    if not guitars:
+        print("No guitars found.")
+        return
+    guitars.sort()
+    for i, guitar in enumerate(guitars, 1):
+        vintage_status = "(VINTAGE)" if guitar.is_vintage() else ""
+        print(f"Guitar{i}: {guitar.name:<25} ({guitar.year}), worth ${guitar.cost:10,.2f} {vintage_status}")
+
+
 if __name__ == "__main__":
     main()
