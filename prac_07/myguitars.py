@@ -70,5 +70,17 @@ def get_new_guitars(guitars):
         name = input("Enter new guitar name (or blank to stop): ")
 
 
+def save_guitars(guitars):
+    """Writes the list of Guitar objects back to the CSV file."""
+    try:
+        with open(FILENAME, 'w') as out_file:
+            guitars.sort()
+            for guitar in guitars:
+                out_file.write(f"{guitar.name},{guitar.year},{guitar.cost}\n")
+        print(f"\nSaved {len(guitars)} guitars to {FILENAME}")
+    except Exception as e:
+        print(f"Error saving file: {e}")
+
+        
 if __name__ == "__main__":
     main()
